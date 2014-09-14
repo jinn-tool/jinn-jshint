@@ -1,0 +1,11 @@
+{
+  "name": "jinn-jshint",
+  "version": "0.0.1",
+  "description": "jshint module for jinn",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Richard Walker <digitalsadhu@gmail.com>",
+  "license": "MIT"
+}
