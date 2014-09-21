@@ -49,3 +49,8 @@ module.exports = function (jinn, cb) {
   copyJshintrc()
 
 }
+
+module.exports.command = {
+  flags: '-j, --jshint',
+  description: 'Add jshint support with opionated defaults'
+}

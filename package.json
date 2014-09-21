@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Richard Walker <digitalsadhu@gmail.com>",
-  "license": "MIT"
+  "author": {
+    "name": "Richard Walker",
+    "email": "digitalsadhu@gmail.com"
+  }
 }
