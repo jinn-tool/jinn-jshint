@@ -2,6 +2,7 @@
 
 var exec = require('exec')
   , fs   = require('fs')
+  , path = require('path')
 
 module.exports = function (jinn, cb) {
 
@@ -9,7 +10,7 @@ module.exports = function (jinn, cb) {
 
   //update package.json script
   function addPackageJsonScript() {
-    var packagejson = process.cwd() + '/' + jinn.appname + '/package.json'
+    var packagejson = path.join(process.cwd(), jinn.appname, 'package.json')
     fs.readFile(packagejson, 'utf8', function (err, content) {
       if (err) throw err
       var pjson = JSON.parse(content)
@@ -26,8 +27,8 @@ module.exports = function (jinn, cb) {
   }
 
   function copyJshintignore() {
-    var source = fs.createReadStream(__dirname + '/templates/.jshintignore')
-    var dest   = fs.createWriteStream(process.cwd() + '/' + jinn.appname + '/.jshintignore')
+    var source = fs.createReadStream(path.join(__dirname, 'templates', '.jshintignore'))
+    var dest   = fs.createWriteStream(path.join(process.cwd(), jinn.appname, '.jshintignore'))
     source.pipe(dest)
 
     source.on('end', installJsHint)
@@ -35,8 +36,8 @@ module.exports = function (jinn, cb) {
 
   //copy jsjintrc
   function copyJshintrc() {
-    var jshintrcSrc = __dirname + '/templates/jshintrc.json'
-    var jshintrcDest = process.cwd() + '/' + jinn.appname + '/.jshintrc'
+    var jshintrcSrc = path.join(__dirname, 'templates', 'jshintrc.json')
+    var jshintrcDest = path.join(process.cwd(), jinn.appname, '.jshintrc')
 
     fs.readFile(jshintrcSrc, 'utf8', function (err, content) {
       if (err) throw err
@@ -52,5 +53,5 @@ module.exports = function (jinn, cb) {
 
 module.exports.command = {
   flags: '-j, --jshint',
-  description: 'Add jshint support with opionated defaults'
+  description: 'Add jshint support with opinionated defaults'
 }
